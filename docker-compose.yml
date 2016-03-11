@@ -1,0 +1,33 @@
+web:
+  build: .
+  command: sh -c "supervisord -n; bash" 
+  working_dir: /
+  environment:
+   PORT: 8181
+  ports:
+   - '8181:8181'
+   - '8080:8080'
+   - '80:80'
+   - '443:443'
+  volumes:
+   - ./dvwa:/var/www/
+mysql:
+  image: mysql 
+  command: bash
+  working_dir: /
+  environment:
+   PORT: 8181 
+  ports:
+   - '8181:8181'
+  volumes:
+   - ./mysql/:/var/www/
+shell:
+  build: .
+  command: bash
+  working_dir: /
+  environment:
+   PORT: 8181
+  ports:
+   - '8181:8181'
+  volumes:
+   - ./:/var/www/
